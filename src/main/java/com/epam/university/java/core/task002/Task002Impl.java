@@ -67,7 +67,8 @@ public class Task002Impl implements Task002 {
 
     @Override
     public String join(String[] sourceCollection, String glue) {
-        if (isArgumentInvalid(sourceCollection) || isArgumentInvalid(glue) || sourceCollection.length == 0) {
+        if (isArgumentInvalid(sourceCollection) || isArgumentInvalid(glue)
+                || sourceCollection.length == 0) {
             throw new IllegalArgumentException();
         }
 
