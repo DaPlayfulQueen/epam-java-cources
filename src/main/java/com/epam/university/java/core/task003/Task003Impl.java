@@ -1,6 +1,8 @@
 package com.epam.university.java.core.task003;
 
 
+import com.epam.university.java.core.commons.PlayfulUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -144,7 +146,7 @@ public class Task003Impl implements Task003 {
         Integer[] intValues = new Integer[intValuesSet.size()];
         intValuesSet.toArray(intValues);
 
-        quickSort(intValues, 0, intValues.length - 1);
+        PlayfulUtils.quickSort(intValues, 0, intValues.length - 1);
 
         String[] result = new String[intValues.length];
 
@@ -164,36 +166,6 @@ public class Task003Impl implements Task003 {
 
     private boolean isArgumentInvalid(int[] argument) {
         return argument == null;
-    }
-
-    private void quickSort(Integer[] array, int left, int right) {
-        if (left < right) {
-            int partitionIndex = partition(array, left, right);
-
-            quickSort(array, left, partitionIndex - 1);
-            quickSort(array, partitionIndex + 1, right);
-        }
-    }
-
-    private int partition(Integer[] array, int left, int right) {
-        int pivot = array[right];
-        int i = (left - 1);
-
-        for (int j = left; j < right; j++) {
-            if (array[j] >= pivot) {
-                i++;
-
-                int temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-            }
-        }
-
-        int temp = array[i + 1];
-        array[i + 1] = array[right];
-        array[right] = temp;
-
-        return i + 1;
     }
 
 }
