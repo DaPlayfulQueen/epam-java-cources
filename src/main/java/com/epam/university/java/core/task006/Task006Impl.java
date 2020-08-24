@@ -39,9 +39,9 @@ public class Task006Impl implements Task006 {
         }
 
         DecimalFormat df = new DecimalFormat("#.###");
-        double resistance = slopeNumerator / slopeDenominator;
+        int resistance = (int) (slopeNumerator / slopeDenominator * 1000);
 
-        return Double.parseDouble(df.format(resistance).replace(",", "."));
+        return (double) resistance / 1000;
 
     }
 
