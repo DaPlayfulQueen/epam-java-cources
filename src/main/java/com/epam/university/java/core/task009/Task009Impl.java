@@ -18,16 +18,14 @@ public class Task009Impl implements Task009 {
 
         String currentLine;
         while ((currentLine = br.readLine()) != null) {
-            String[] wordsFromLine = currentLine.split("[ ]+");
+            String[] wordsFromLine = currentLine.trim().split("[ ]+");
+
+
             for (int i = 0; i < wordsFromLine.length; i++) {
-                wordsFromLine[i] = wordsFromLine[i].toLowerCase().replaceAll("[^A-Za-z0-9’]", "");
+                wordsFromLine[i] = wordsFromLine[i]
+                        .toLowerCase().replaceAll("[^A-Za-z0-9’]", "");
             }
             uniqueWords.addAll(Arrays.asList(wordsFromLine));
-        }
-
-        for (String string :
-                uniqueWords) {
-            System.out.println(string);
         }
 
         return uniqueWords;
