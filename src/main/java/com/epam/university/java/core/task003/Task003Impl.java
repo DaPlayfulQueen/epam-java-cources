@@ -3,12 +3,7 @@ package com.epam.university.java.core.task003;
 
 import com.epam.university.java.core.commons.PlayfulUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.LinkedList;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.*;
 
 
 public class Task003Impl implements Task003 {
@@ -100,8 +95,9 @@ public class Task003Impl implements Task003 {
         // O(n*n) at max
         List<String> resultList = new LinkedList<>(Arrays.asList(source));
 
+
         for (String string : toRemote) {
-            resultList.remove(string);
+            resultList.removeAll(Collections.singleton(string));
         }
 
         String[] resultArray = new String[resultList.size()];
@@ -152,7 +148,6 @@ public class Task003Impl implements Task003 {
 
         for (int i = 0; i < intValues.length; i++) {
             result[i] = String.valueOf(intValues[i]);
-            System.out.println(result[i]);
         }
 
 
