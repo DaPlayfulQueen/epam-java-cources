@@ -27,19 +27,6 @@ public class Task011Impl implements Task011 {
         }
     }
 
-    private void moveArrayElements(String[] array, int startPosition, int endPosition) {
-
-        String firstElement = array[startPosition];
-        startPosition++;
-
-        if (endPosition + 1 - startPosition >= 0)
-            System.arraycopy(array, startPosition, array, startPosition - 1,
-                    endPosition + 1 - startPosition);
-        array[endPosition] = firstElement;
-
-    }
-
-
     @Override
     public String getLastName(ArrayList<String> collection) {
 
@@ -57,10 +44,36 @@ public class Task011Impl implements Task011 {
         return collection.get(0);
     }
 
+    // I'm sorry for this. I'll optimize it later
     @Override
     public String getLastName(LinkedList<String> collection) {
-        return null;
+        if (isArgumentInvalid(collection)) {
+            throw new IllegalArgumentException();
+        }
+
+        int index = 0;
+
+        while (collection.size() != 1) {
+            collection.remove(index);
+            index = (index + 1) % collection.size();
+        }
+
+        return collection.get(0);
     }
+
+    private void moveArrayElements(String[] array, int startPosition, int endPosition) {
+
+        String firstElement = array[startPosition];
+        startPosition++;
+
+        if (endPosition + 1 - startPosition >= 0) {
+            System.arraycopy(array, startPosition, array, startPosition - 1,
+                    endPosition + 1 - startPosition);
+        }
+        array[endPosition] = firstElement;
+
+    }
+
 
     private boolean isArgumentInvalid(String[] collection) {
         return collection.length == 0;
