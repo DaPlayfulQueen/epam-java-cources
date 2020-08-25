@@ -160,7 +160,7 @@ public class Task003Impl implements Task003 {
     }
 
     private boolean isArgumentInvalid(int[] argument) {
-        return argument == null;
+        return argument == null || argument.length == 0;
     }
 
 }

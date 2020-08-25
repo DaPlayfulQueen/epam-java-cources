@@ -16,17 +16,30 @@ public class Task009Impl implements Task009 {
         Set<String> uniqueWords = new HashSet<>();
         BufferedReader br = new BufferedReader(new FileReader(sourceFile, StandardCharsets.UTF_8));
 
+
+
+
         String currentLine;
         while ((currentLine = br.readLine()) != null) {
             String[] wordsFromLine = currentLine.trim().split("[ ]+");
 
 
+
             for (int i = 0; i < wordsFromLine.length; i++) {
-                wordsFromLine[i] = wordsFromLine[i]
+                String wordFromLine = wordsFromLine[i]
                         .toLowerCase().replaceAll("[^A-Za-z0-9’]", "");
+                if (!wordFromLine.equals("")) {
+                    uniqueWords.add(wordFromLine);
+                }
+
             }
-            uniqueWords.addAll(Arrays.asList(wordsFromLine));
         }
+
+        for (String string:
+             uniqueWords) {
+            System.out.println("Word " + string);
+        }
+
 
         return uniqueWords;
     }
