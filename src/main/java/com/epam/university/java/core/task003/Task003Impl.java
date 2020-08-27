@@ -3,7 +3,15 @@ package com.epam.university.java.core.task003;
 
 import com.epam.university.java.core.commons.PlayfulUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.LinkedList;
+import java.util.Collections;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.HashSet;
+
+
 
 
 public class Task003Impl implements Task003 {
