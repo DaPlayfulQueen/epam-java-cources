@@ -6,7 +6,7 @@ package com.epam.university.java.core.task038;
 public interface Graph {
 
     /**
-     * Create node with given id, x and y coordinates
+     * Create node with given id, x and y coordinates.
      * @param id node id
      * @param x x coordinate
      * @param y y coordinate
@@ -15,7 +15,7 @@ public interface Graph {
     void createNode(int id, int x, int y);
 
     /**
-     * Add connection directed from source node to target node
+     * Add connection directed from source node to target node.
      * @param fromId id of source node
      * @param toId id of target node
      */

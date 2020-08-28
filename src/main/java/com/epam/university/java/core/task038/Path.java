@@ -2,6 +2,7 @@ package com.epam.university.java.core.task038;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 import static java.lang.Math.pow;
 
 public class Path {
@@ -12,6 +13,11 @@ public class Path {
         this.path = new ArrayList<>(path);
     }
 
+    /**
+     * Auxiliary method to calculate total distance of path for tests.
+     *
+     * @return rounded total distance of given path
+     */
     public int calculateDistance() {
         double distance = 0;
         for (int i = 0; i < path.size() - 1; i++) {

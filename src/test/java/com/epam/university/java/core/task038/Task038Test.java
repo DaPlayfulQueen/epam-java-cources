@@ -6,7 +6,8 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class Task038Test {
     private GraphFactory factory;
@@ -19,79 +20,52 @@ public class Task038Test {
     }
 
     @Test
-    public void getShortestPath1() {
-        Graph sourceGraph = factory.newInstance();
+    public void getShortestPath() {
+        Graph sourceGraph = factory.newInstance(5);
         sourceGraph = instance.invokeActions(sourceGraph, Arrays.asList(
-                g -> g.createNode(0, 1, 1),
-                g -> g.createNode(1, 2, 5),
-                g -> g.createNode(2, 3, 4),
-                g -> g.createNode(3, 8, 8),
-                g -> g.createNode(4, 0, 39),
-                g -> g.connectNodes(0, 1),
-                g -> g.connectNodes(0, 2),
-                g -> g.connectNodes(0, 4),
-                g -> g.connectNodes(2, 3),
-                g -> g.connectNodes(1, 4),
-                g -> g.connectNodes(3, 4)
+            g -> g.createNode(0, 1, 1),
+            g -> g.createNode(1, 2, 5),
+            g -> g.createNode(2, 3, 4),
+            g -> g.createNode(3, 8, 8),
+            g -> g.createNode(4, 0, 39),
+            g -> g.connectNodes(0, 1),
+            g -> g.connectNodes(0, 2),
+            g -> g.connectNodes(0, 4),
+            g -> g.connectNodes(2, 3),
+            g -> g.connectNodes(1, 4),
+            g -> g.connectNodes(3, 4)
         ));
-        Path path = new Path(instance.getShortestPath(sourceGraph, 0, 4));
-        assertEquals("There path is incorrect", path.calculateDistance(), 10);
+        Path path1 = new Path(instance.getShortestPath(sourceGraph, 0, 3));
+        Path path2 = new Path(instance.getShortestPath(sourceGraph, 0, 4));
+        Path path3 = new Path(instance.getShortestPath(sourceGraph, 0, 2));
+        assertEquals("The path is incorrect", 10, path1.calculateDistance());
+        assertEquals("The path is incorrect", 38, path2.calculateDistance());
+        assertEquals("The path is incorrect", 3, path3.calculateDistance());
     }
 
     @Test
-    public void getShortestPath2() {
-        Graph sourceGraph = factory.newInstance();
+    public void getShortestPathNotExist() {
+        Graph sourceGraph = factory.newInstance(5);
         sourceGraph = instance.invokeActions(sourceGraph, Arrays.asList(
-                g -> g.createNode(0, 1, 1),
-                g -> g.createNode(1, 2, 5),
-                g -> g.createNode(2, 8, 8),
-                g -> g.createNode(3, 0, 39),
-                g -> g.connectNodes(0, 1),
-                g -> g.connectNodes(0, 3),
-                g -> g.connectNodes(2, 3),
-                g -> g.connectNodes(1, 3)
+            g -> g.createNode(0, 1, 1),
+            g -> g.createNode(1, 2, 5),
+            g -> g.createNode(2, 3, 4),
+            g -> g.createNode(3, 8, 8),
+            g -> g.createNode(4, 0, 39),
+            g -> g.connectNodes(0, 1),
+            g -> g.connectNodes(0, 2),
+            g -> g.connectNodes(0, 4),
+            g -> g.connectNodes(2, 3),
+            g -> g.connectNodes(1, 4),
+            g -> g.connectNodes(3, 4)
         ));
-        Path path = new Path(instance.getShortestPath(sourceGraph, 0, 4));
-        assertEquals("There path is incorrect", path.calculateDistance(), 39);
-    }
+        Path path1 = new Path(instance.getShortestPath(sourceGraph, 3, 1));
+        Path path2 = new Path(instance.getShortestPath(sourceGraph, 1, 0));
+        Path path3 = new Path(instance.getShortestPath(sourceGraph, 4, 0));
 
-    @Test
-    public void getPathNotExists1() {
-        Graph sourceGraph = factory.newInstance();
-        sourceGraph = instance.invokeActions(sourceGraph, Arrays.asList(
-                g -> g.createNode(0, 1, 1),
-                g -> g.createNode(1, 2, 5),
-                g -> g.createNode(2, 8, 8),
-                g -> g.createNode(3, 0, 39),
-                g -> g.connectNodes(0, 1),
-                g -> g.connectNodes(0, 3),
-                g -> g.connectNodes(2, 3),
-                g -> g.connectNodes(1, 3)
-        ));
-        Path path = new Path(instance.getShortestPath(sourceGraph, 3, 1));
-        assertFalse("The path exists", path.isExist());
+        assertFalse("The path exists", path1.isExist());
+        assertFalse("The path exists", path2.isExist());
+        assertFalse("The path exists", path3.isExist());
     }
-
-    @Test
-    public void getPathNotExists2() {
-        Graph sourceGraph = factory.newInstance();
-        sourceGraph = instance.invokeActions(sourceGraph, Arrays.asList(
-                g -> g.createNode(0, 1, 1),
-                g -> g.createNode(1, 2, 5),
-                g -> g.createNode(2, 8, 8),
-                g -> g.createNode(3, 0, 39),
-                g -> g.createNode(4, 7, 12),
-                g -> g.createNode(5, 7, 16),
-                g -> g.connectNodes(0, 1),
-                g -> g.connectNodes(0, 3),
-                g -> g.connectNodes(2, 3),
-                g -> g.connectNodes(1, 3),
-                g -> g.connectNodes(1, 4),
-                g -> g.connectNodes(4, 5)
-        ));
-        Path path = new Path(instance.getShortestPath(sourceGraph, 4, 2));
-        assertFalse("The path exists", path.isExist());
-    }
-
 
 }

@@ -6,21 +6,21 @@ package com.epam.university.java.core.task038;
 public interface Node {
 
     /**
-     * Get id of node
+     * Get id of node.
      *
      * @return id value
      */
     int getId();
 
     /**
-     * Get x coordinate of node
+     * Get x coordinate of node.
      *
      * @return x coordinate value
      */
     int getX();
 
     /**
-     * Get y coordinate of node
+     * Get y coordinate of node.
      *
      * @return y coordinate value
      */
