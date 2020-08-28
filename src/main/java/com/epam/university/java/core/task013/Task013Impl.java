@@ -16,41 +16,39 @@ public class Task013Impl implements Task013 {
     @Override
     public boolean isConvexPolygon(Figure figure) {
 
-        Collection<Vertex> vertices = figure.getVertexes();
+        ((FigureImpl) figure).sortVertices();
+        ArrayList<Vertex> vertices = (ArrayList<Vertex>) figure.getVertexes();
 
-        if (vertices.size() < 3) {
-            return false;
-        }
+        Vertex a;
+        Vertex b;
+        Vertex c;
 
-        Point a;
-        Point b;
-        Point c;
+        int direction = 0;
 
         for (int i = 0; i < vertices.size(); i++) {
-            
+            a = vertices.get(i);
+            Vertex tmp = vertices.get((i + 1) % vertices.size());
+            b = new VertexImpl(tmp.getX() - a.getX(), tmp.getY() - a.getY());
+            c = vertices.get((i + 2) % vertices.size());
+
+            if (i == 0) {
+                direction = getDirection(a, b, c);
+            } else {
+                int newDirection = getDirection(a, b, c);
+
+                if ((newDirection > 0 && direction < 0) || (newDirection < 0 && direction > 0)) {
+                    return false;
+                }
+            }
+
         }
 
-
-
-        return false;
+        return true;
     }
 
-    private static class Point {
-        private final int x;
-        private final int y;
-
-        public Point(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
-        }
+    private int getDirection(Vertex a, Vertex b, Vertex c) {
+        return c.getX() * b.getY() - c.getY() * b.getX()
+                + b.getX() * a.getY() - b.getY() * a.getX();
     }
 
 }
