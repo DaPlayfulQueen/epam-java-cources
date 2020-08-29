@@ -18,6 +18,11 @@ public class VampireNumberImpl implements VampireNumber {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        return obj instanceof VampireNumberImpl && hashCode() == obj.hashCode();
+    }
+
+    @Override
     public int getMultiplication() {
         return multiplication;
     }
@@ -31,4 +36,5 @@ public class VampireNumberImpl implements VampireNumber {
     public int getSecond() {
         return second;
     }
+
 }
